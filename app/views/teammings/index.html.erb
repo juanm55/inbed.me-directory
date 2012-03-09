@@ -1,0 +1,25 @@
+<h1>Listing teammings</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Team</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @teammings.each do |teamming| %>
+  <tr>
+    <td><%= teamming.user_id %></td>
+    <td><%= teamming.team_id %></td>
+    <td><%= link_to 'Show', teamming %></td>
+    <td><%= link_to 'Edit', edit_teamming_path(teamming) %></td>
+    <td><%= link_to 'Destroy', teamming, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Teamming', new_teamming_path %>

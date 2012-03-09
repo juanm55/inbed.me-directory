@@ -1,0 +1,36 @@
+<h1>Listing users</h1>
+
+<table class="table">
+  <tr>
+    <th>Name</th>
+    <th>Position</th>
+    <th>Email</th>
+    <th>Twitter acc</th>
+    <th>Phone mob</th>
+    <th>Phone land</th>
+    <th>Address</th>
+    <th>teams</th>
+    <th></th>
+  </tr>
+
+<% @users.each do |user| %>
+  <tr>
+    <td><%= user.name %></td>
+    <td><%= user.position_id %></td>
+    <td><%= user.email %></td>
+    <td><%= user.twitter_acc %></td>
+    <td><%= user.phone_mob %></td>
+    <td><%= user.phone_land %></td>
+    <td><%= user.address %></td>
+    <td>
+      <% user.teams.each do |team| %>
+        <%= team.name %>
+      <% end -%></td>
+    <td><%= link_to 'Show', user %> <%= link_to 'Edit', edit_user_path(user) %> <%= link_to 'Destroy', user, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to  image_tag('user_new.png', :title => 'New user', :alt => 'New User', :width => 40), new_user_url %>

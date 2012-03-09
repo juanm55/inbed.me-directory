@@ -1,0 +1,2 @@
+module TeammingsHelper
+end

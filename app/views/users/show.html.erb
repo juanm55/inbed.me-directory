@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="span12">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Position</th>
+          <th>Email</th>
+          <th>Twitter</th>
+        </tr>
+      </thead>
+      
+      <tbody>
+        <td><%= @user.name %></td>
+        <td><%= @user.position.name %></td>
+        <td><%= @user.email %></td>
+        <td><%= @user.twitter_acc %></td>
+      </tbody>
+    </table>
+    
+    
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Mobile</th>
+          <th>Phone</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      
+      <tbody>
+        <td><%= @user.phone_mob %></td>
+        <td><%= @user.phone_land %></td>
+        <td><%= @user.address %></td>
+      </tbody>
+    </table>
+
+
+<div class="row">
+  <div class="span4">
+    <div class="span4">
+    <h4>This user belongs to teams:</h4>
+    <ul>
+      <% @user.teammings.each do |teamming| -%>
+        <li><%= teamming.team.name %></li>
+      <% end -%>
+    </ul>
+  </div>
+  </div>
+</div>
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>

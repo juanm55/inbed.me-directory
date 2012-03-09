@@ -1,0 +1,21 @@
+<%= form_for(@teamming) do |f| %>
+  <% if @teamming.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@teamming.errors.count, "error") %> prohibited this teamming from being saved:</h2>
+      <ul>
+      <% @teamming.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= hidden_field_tag 'teamming[user_id]', params[:user_id] %>
+
+  <div class="field">
+    <%= f.label :team_id %><br />
+    <%= f.select :team_id, Team.select('id, name').map{|t| [t.name, t.id]} %>
+  </div>
+
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+<% end %>

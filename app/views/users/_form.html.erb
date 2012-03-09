@@ -1,0 +1,77 @@
+<%= form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+      <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="row">
+    <div class="span4">
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+    
+    <div class="span4">
+      <%= f.label :position_id %>
+      <%= f.select :position_id, Position.select('id, name').map{|p| [p.name, p.id]} %>
+    </div>
+    
+    <div class="span4">
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="span4">
+      <%= f.label :twitter_acc %>
+      <%= f.text_field :twitter_acc %>
+    </div>
+    
+    <div class="span4">
+      <%= f.label :phone_mob %>
+      <%= f.text_field :phone_mob %>
+    </div>
+    
+    <div class="span4">
+      <%= f.label :phone_land %>
+      <%= f.text_field :phone_land %>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="span4">
+      <%= f.label :address %>
+      <%= f.text_area :address, :size => "40x5" %>
+    </div>
+    
+    <div class="span4">&nbsp;
+      <% unless @user.new_record? -%>
+        <ul>
+          <% @user.teammings.each do |teamming| -%>
+            <li><%= teamming.team.name %> <%= link_to 'X', teamming, confirm: 'Are you sure?', method: :delete, :title => 'Delete association' %></li>
+          <% end -%>
+        </ul>
+        
+        <br/>
+        <%= link_to image_tag('team_new.png', :title => 'New team', :alt => 'New Team', :width => 32), url_for(:controller => 'teammings', :action => 'new', :user_id => @user.id) %>
+      <% end -%>
+    </div>
+    
+    <div class="span4">
+      <br/>
+      <br/>
+      
+      <%= f.submit nil, :class => "btn btn-primary btn-large" %>
+    </div>
+  </div>
+  
+  <div class="row">
+    
+  </div>
+<% end %>

@@ -1,0 +1,55 @@
+
+<% image_size = 100 -%>
+
+<div class="row">
+  <div class="span2">
+    <div class="row">
+      <div class="span2">
+        <%= link_to  image_tag('contacts.png', :title => 'Full Directory', :alt => 'Full directory', :width => image_size), users_url %>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="span2">
+        <%= link_to  image_tag('user_new.png', :title => 'New user', :alt => 'New User', :width => image_size), new_user_url %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="span2">
+        <%= link_to image_tag('team_new.png', :title => 'New team', :alt => 'New Team', :width => image_size), new_team_url  %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="span2">
+        <%= link_to image_tag('position_new.png', :title => 'New position', :alt => 'New Position', :width => image_size), new_position_url %>
+      </div>
+    </div>
+  </div>
+  
+  <div class="span8">
+    <h2>Quick directory</h2>
+    
+    <table class="table">
+      <thead>
+        <tr>
+          <th><%= User.human_attribute_name('name') %></th>
+          <th><%= User.human_attribute_name('position_id') %></th>
+          <th>Twitter acc</th>
+          <th></th>
+        </tr>
+      </thead>
+  
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= user.name %></td>
+            <td><%= user.position_id %></td>
+            <td><%= user.twitter_acc %></td>
+            <td><%= link_to 'Show', user %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+</div>
